@@ -1,0 +1,171 @@
+import React from 'react';
+import { StyleSheet, View } from "react-native";
+
+import AntDesign from '@expo/vector-icons/AntDesign';
+
+// SCREENS
+import WelcomeScreen from './app/screens/WelcomeScreen';
+import ViewImageScreen from './app/screens/ViewImageScreen';
+
+// COMPONENTS
+import AppText from "./app/components/AppText/AppText";
+import AppButton from "./app/components/AppButton";
+
+export default function App() {
+
+  return (
+      <WelcomeScreen />
+    // <View style={styles.container}>
+
+    //   {/* <AppText> I live React Native! This will work fine I hope </AppText> */}
+
+    //   {/* <AppButton title="Login" onPress={()=>console.log("Pressed")} /> */}
+
+    //   {/* <AntDesign name="mail" size={60} color="gold" /> */}
+    
+    // </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    justifyContent:"center",
+    // alignItems:"center"
+  },
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+// *************************** RADIUS ***************************
+// <View style={styles.container}>
+// <View style={{
+//   backgroundColor:"dodgerblue",
+//   height:100,
+//   width:100,
+//   borderWidth:10,
+//   borderColor:"purple",
+//   // borderTopColor:"black",
+//   // borderTopEndRadius:50,
+//   // borderTopWidth:20,
+//   // borderRadius:10,
+//   // borderTopLeftRadius:70,
+//   borderRadius:50,    // half of width will give complete cirlce
+// }}>
+// </View>
+// </View>
+
+
+
+// *************************** RADIUS ***************************
+// <View style={styles.container}>
+// <View style={{
+//   backgroundColor:"dodgerblue",
+//   height:100,
+//   width:100,
+  
+//   // For iOS
+//   //  shadowColor:"red",
+//   //  shadowOffset:{
+//   //    height:10,
+//   //    width:10,
+//   //   //  height:-10,
+//   //   //  width:-10
+//   //  },
+//   //  shadowOpacity:0.3,   // 0 means no Shadow and 1 means complete black
+//   //  shadowRadius:10,
+//   //  elevation:60,  
+
+//   // For Android
+//   elevation:10,    
+// }}>
+// </View>
+// </View>
+
+
+
+
+// *************************** STYLES ***************************
+// <View style={styles.container}>
+// <View style={{
+//   backgroundColor:"dodgerblue",
+//   height:100,
+//   width:100,
+//   padding:20,
+//   paddingHorizontal:10,    // this include both right and left
+//   paddingVertical:10,    // this include both top and bottom
+//   paddingEnd:20 
+// }}>
+//   <View style={{
+//   backgroundColor:"gold",
+//   height:50,
+//   width:50,  
+//   }}>
+//   </View>
+// </View>
+// <View style={{
+//   backgroundColor:"tomato",
+//   height:100,
+//   width:100,
+//   marginVertical:20
+// }}>
+//   <View>
+//   </View>
+// </View>
+// </View>
+
+
+
+// *************************** TEXT STYLES ***************************
+// <View style={styles.container}>
+// <Text style={{
+  // // FOLLOWING TEXT PROPERTIES WILL ONLY WORK WITH TEXT
+  // fontSize:30,
+  // // for iOS
+  // // fontFamily:"Courier",     // expo custom FONTS
+  // // for Android
+  // // fontFamily:"Roboto",
+  // fontStyle:"italic",
+  // // fontWeight:"bold",
+  // fontWeight:"300",
+  // color:"tomato",
+  // textTransform:"uppercase",
+  // textDecorationLine:"underline",
+  // textAlign:"center",
+  // // lineHeight: 80,
+  // // textDecorationStyle:"dotted",
+  // // textDecorationColor:"red"
+// }}>I live React Native! This is my first React Native App! This will work fine I hope!</Text>
+// </View>
+
+
+
+// *************************** EXPO ICONS ***************************
+// <AntDesign name="mail" size={60} color="gold" />
+
+
+
+
+// *************************** PLATFORM SPECIFICATION ***************************
+// select method returns object which we have to spread for use in stylesheet
+// Platform.select({
+//     ios:{
+//         fontSize: 18,
+//         fontFamily: "Avenir" ,
+//     },
+//     android:{
+//         fontSize: 18,
+//         fontFamily: "Roboto" ,
+//     }
+// })
+

@@ -1,0 +1,77 @@
+import React, { useState } from 'react';
+import { StyleSheet, View, Image, TextComponent, TextInput, Text, Switch } from "react-native";
+
+// COMPONENTS
+import AppText from "./app/components/AppText/AppText";
+import AppButton from "./app/components/AppButton";
+import Card from "./app/components/Card";
+import Screen from "./app/components/Screen"
+import Icon from './app/components/Icon';
+import ListItem from './app/components/ListItem';
+
+// SCREENS
+import WelcomeScreen from './app/screens/WelcomeScreen';
+import ViewImageScreen from './app/screens/ViewImageScreen';
+import ListingsDetailsScreen from './app/screens/ListingsDetailsScreen';
+import MessagesScreen from './app/screens/MessagesScreen';
+import AccountScreen from './app/screens/AccountScreen';
+import ListingsScreen from './app/screens/ListingsScreen';
+import AppTextInput from './app/components/AppTextInput';
+import AppPicker from './app/components/AppPicker';
+
+
+const categories = [
+  { label:"Furniture", value:1 },
+  { label:"Clothing", value:2 },
+  { label:"Cameras", value:3 },
+]
+
+export default function App() {
+
+  const [firstName, setFirstName] = useState("")
+  const [isNew, setIsNew] = useState("")
+  const [selectedItem, setSelectedItem] = useState("Category");
+
+
+  return (
+      <Screen>
+        {/* <Switch value={isNew} onValueChange={(newValue)=>setIsNew(newValue)} /> */}
+        <AppPicker items={categories} icon="apps" selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
+        <AppTextInput icon="email" placeholder="Enter Email" />
+      </Screen>
+      // <ListingsScreen />
+  );
+}
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    flexDirection:"row",
+    // justifyContent:"center",
+    // alignItems:"center"
+  },
+  cards:{
+    backgroundColor:"#f8f4f4",
+    padding:20,
+    paddingTop:100,
+  }
+})
+
+
+
+
+
+
+
+// <Text>{firstName}</Text>
+//  <TextInput
+  // keyboardType="decimal-pad"
+  // secureTextEntry={true}
+  //clearButtonMode="while-editing"  // it only works on iOS
+  // onChangeText={text=>setFirstName(text)}
+  // placeholder="Enter First Name"
+  // style={{
+  //   borderBottomColor:"blue",
+  //   borderBottomWidth:2
+  // }}
+//  />

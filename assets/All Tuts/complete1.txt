@@ -1,0 +1,87 @@
+import React from 'react';
+import {  Image,
+          StyleSheet,
+          Text,
+          View,
+          SafeAreaView,      // it only works in iOS 11 or more 
+          TouchableWithoutFeedback, 
+          TouchableOpacity,
+          TouchableHighlight,
+          TouchableNativeFeedback, // this is not supported on iOS and it better works with color background
+          Button, 
+          Alert,
+          Platform,
+          StatusBar
+} from 'react-native';
+
+export default function App() {
+
+  const handle = () => {
+    console.log("Clicked")
+  }
+
+  return (
+    <SafeAreaView style={[styles.container]}>
+
+      {/* <Text > Hello Andriod! Hello Andriod! Hello Andriod!</Text> */}
+      {/* <Text onPress={handle}> Hello Andriod! Hello Andriod! Hello Andriod!</Text> */}
+      {/* <Text style={styles.name}> Hello Kamran!</Text>  */}
+
+      {/* For Local Images */}
+      {/* <Image source={require("./assets/icon.png")} />   */}
+
+      {/* From Internet Images */}
+      {/* <Image blurRadius={1} fadeDuration={2000} source={{ uri:"https://picsum.photos/200/300", height: 300, width: 200 }} />   */}
+
+      {/* <TouchableWithoutFeedback onPress={handle}>
+        <Image fadeDuration={100} source={{ uri:"https://picsum.photos/200/300", height: 300, width: 200 }} />
+      </TouchableWithoutFeedback>   */}
+
+      {/* <TouchableOpacity onPress={handle}>
+        <Image fadeDuration={100} source={{ uri:"https://picsum.photos/200/300", height: 300, width: 200 }} />
+      </TouchableOpacity>  */}
+
+      {/* <TouchableHighlight onPress={handle}>
+        <Image fadeDuration={100} source={{ uri:"https://picsum.photos/200/300", height: 300, width: 200 }} />
+      </TouchableHighlight>  */}
+
+      {/* <TouchableNativeFeedback onPress={handle}>
+        <View style={{width:200, height:70, backgroundColor:"blue"}}></View>
+      </TouchableNativeFeedback>  */}
+
+      <Button 
+        color="orange" 
+        title="Button" 
+        onPress={()=>{
+          // alert("hello world!");
+
+          // Alert.alert("Alert Title", "Alert Message", [
+          //   {text:"Yes", onPress:()=>{console.log("YES")} },
+          //   {text:"No", onPress:()=>{console.log("NO")} }
+          // ])
+          
+          // Alert.prompt("Prompt Title", "Prompt Message", text=>console.log(text)) // this only works in iOS
+          console.log("object")
+        }}
+      />
+
+    </SafeAreaView>
+  );
+}
+
+const conatainerStyle = {backgroundColor:"orange"};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight  : 0, // for safeareaview in android
+  },
+  name: {
+    backgroundColor: '#111',
+    color:"white"
+  },
+});
+

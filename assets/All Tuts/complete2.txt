@@ -1,0 +1,208 @@
+import React from 'react';
+import {  Image,
+          StyleSheet,
+          Text,
+          View,
+          SafeAreaView,      // it only works in iOS 11 or more 
+          TouchableWithoutFeedback, 
+          TouchableOpacity,
+          TouchableHighlight,
+          TouchableNativeFeedback, // this is not supported on iOS and it better works with color background
+          Button, 
+          Alert,
+          Platform,
+          StatusBar,
+          Dimensions
+} from 'react-native';
+// import { useDimensions, useDeviceOrientation } from "@react-native-community/hooks"
+
+
+
+
+
+export default function App() {
+
+  const handle = () => {
+    console.log("Clicked");
+  }
+
+  // console.log(Dimensions.get("window"));   // this is useable able area
+  // console.log(Dimensions.get("screen"));   // this is whole screen area
+
+  // change "orientation": "portrait", -------> "orientation": "default", to support both else if you wants to support only particular orientation than keep that
+
+  // following is for working with orientation handling
+  // console.log(useDimensions());
+  // console.log(useDeviceOrientation())
+ 
+  // const { landscape, portrait } = useDeviceOrientation();
+
+  return (
+    <View style={{
+      backgroundColor:"white",
+      flex:  1, // flex 1 means it will grow to available whole space and 0.5 means it grow to half of the whole space
+      
+      // // for specifying the flex direction ---> (for changing row to column or column to row in main axis direction) use Following
+      // flexDirection: "column",
+      // flexDirection: "column-reverse",
+      flexDirection: "row", 
+      // flexDirection: "row-reverse",
+
+      // // for specifying the flex alignment ---> (you can say main axis direction) use Following
+      // justifyContent: "flex-start",
+      justifyContent: "center",
+      // justifyContent: "flex-end",
+      // justifyContent: "space-around",
+      // justifyContent: "space-between",
+      // justifyContent: "space-evenly",
+
+      // // for specifying the flex content ---> (you can say secondary axis direction within EACH LINE) use Following
+      // alignItems:"flex-start",
+      alignItems:"center",
+      // alignItems:"flex-end",
+      // alignItems:"stretch",    // you can view the effect when you will REMOVE height or width of following views container and THIS is the DEFAULT value
+      // alignItems:"baseline",   // you can view the effect when you will CHANGE height or width of following views container
+    
+      // // if you keep on add content on same line or row then the items will start shrinking likein following 5 Views you can change this behaviour using flexWrap
+      // flexWrap:"nowrap",
+      // flexWrap:"wrap",
+      // flexWrap:"wrap-reverse",
+
+      // // for specifying the flex content ---> (you can say secondary axis direction OVER WHOLE SECTION) use Following
+      // alignContent:"flex-start",
+      // alignContent:"center",
+      // alignContent:"flex-end",
+      // alignContent:"space-around",
+      // alignContent:"space-between",
+      // alignContent:"stretch",
+    }}>
+
+      {/* <View style={{
+          backgroundColor:"dodgerblue",
+          width: portrait? '100%':'100%', //"50%", // this is like covering 50% screen of the device
+          height: landscape? '100%':'30%',
+        }}></View> */}
+
+        {/* following three flex means whole space is divided in 3 sections */}
+        {/* following two flex are 1 and one flex is 2 means whole space is divided in 4 sections */}
+        {/* <View style={{
+          backgroundColor:"dodgerblue",
+          flex: 1,
+        }} ></View>
+        <View style={{
+          backgroundColor:"darkgreen",
+          flex: 1,
+        }} ></View>
+        <View style={{
+          backgroundColor:"orange",
+          flex: 3,
+        }} ></View> */}
+
+        {/* following three views are 100 by 100 and are aligned vertically BY DEFAULT */}
+        {/* <View style={{
+          backgroundColor:"red",
+          height:100,
+          width:100,
+          // alignSelf:"baseline",    // this means it will apply to individual container
+        }} ></View>
+        <View style={{
+          backgroundColor:"green",
+          height:100,
+          width:100
+        }} ></View>
+        <View style={{
+          backgroundColor:"blue",
+          height:100,
+          width:100
+        }} ></View> */}
+
+        {/* if you keep on add then the items will start shrinking likein following 5 Views you can change this behaviour using flexWrap */}
+        {/* <View style={{
+          backgroundColor:"red",
+          height:100,
+          width:100,
+        }} ></View>
+        <View style={{
+          backgroundColor:"green",
+          height:200,
+          width:100
+        }} ></View>
+        <View style={{
+          backgroundColor:"blue",
+          height:300,
+          width:100
+        }} ></View>
+        <View style={{
+          backgroundColor:"gray",
+          height:100,
+          width:100
+        }} ></View>
+        <View style={{
+          backgroundColor:"purple",
+          height:100,
+          width:100
+        }} ></View> */}
+
+
+        {/* <View style={{
+          backgroundColor:"red",
+          // flexBasis: 100,    // its like setting the width
+          width:100,
+          height:100,
+        }} ></View>
+        <View style={{
+          backgroundColor:"green",
+          // flexGrow:1 ,      // it will fill the remaining left space with this container
+          width:100,
+          height:100,
+        }} ></View>
+        <View style={{
+          backgroundColor:"blue",
+          // flexShrink: 1,      // if it is so much wide like that it makes other in same row make OVERLOW then this will make itself shrink to adjust others
+          width:100,
+          height:100,
+        }} ></View> */}
+
+        {/* POSITIONING */}
+        {/* <View style={{
+          backgroundColor:"red",
+          width:100,
+          height:100,
+        }} ></View>
+        <View style={{
+          backgroundColor:"green",
+          width:100,
+          height:100,
+          position:"relative", // it is relative to self ROW and it is DEFAULT BEHAVIOUR
+          // position:"absolute", // it is absolute to self PARENT CONTAINER
+          // left:20,
+          // right:20,
+          // top:20,
+          // bottom:-20,
+        }} ></View>
+        <View style={{
+          backgroundColor:"blue",
+          width:100,
+          height:100,
+        }} ></View> */}
+
+    </View>
+
+
+  );
+}
+
+// const conatainerStyle = {backgroundColor:"orange"};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight  : 0, // for safeareaview in android
+  },
+});
+
+
+// "foregroundImage": "./assets/adaptive-icon.png",

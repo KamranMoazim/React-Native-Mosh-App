@@ -1,0 +1,35 @@
+
+
+// export default function App() {
+
+//   const [imageUri, setImageUri] = useState(null)
+
+//   const requestPermission = async () => {
+//     // const {granted} = await Camera.requestPermissionsAsync()
+//     const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+//     if (!granted) alert("You need to Allow the Camera Access to get this Feature enabled.")
+//   }
+
+//   useEffect( ()=>{
+//     requestPermission()
+//   },[])
+
+//   const selectImage = async () => {
+//     try {
+//       const result = ImagePicker.launchImageLibraryAsync();
+//       if (!(await result).cancelled) {
+//         setImageUri((await result).uri);
+//       }
+//     } catch (error) {
+//       console.log("Erro while reading an image", error);
+//     }
+//   }
+
+//   return (
+//       <Screen>
+//         <Button title="Select Image" onPress={selectImage} />
+//         <Image source={{uri:imageUri}} style={{height:200, width:200}} />
+//       </Screen>
+//   );
+// }
+
