@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, FlatList } from 'react-native'
+import { StyleSheet, FlatList, Alert } from 'react-native'
 
 import Card from '../components/Card'
 import Screen from "../components/Screen"
@@ -7,8 +7,8 @@ import colors from '../config/colors'
 import AppText from '../components/AppText/AppText'
 import AppButton from '../components/AppButton'
 import ActivityIndicator from "../components/ActivityIndicator"
-import listingsApi from "../api/listings";
-import useApi from "../hooks/useApi"
+import myListingsApi from "../api/myListings";
+import useAuth from "../auth/useAuth"
 
 // const listings = [
 //     {
@@ -26,38 +26,53 @@ import useApi from "../hooks/useApi"
 // ]
 
 
-export default function ListingsScreen({navigation}) {
 
-    const { data:listings, loading, error, request:loadListings } = useApi(listingsApi.getListings)
-    //// For getting Listings from Backend
-    // const [listings, setListings] = useState();
-    // const [error, setError] = useState(false);
-    // const [loading, setLoading] = useState(false);
 
-    // const loadListings =  async () => {
 
-    //     setLoading(true);
-    //     const response = await listingsApi.getListings();
-    //     setLoading(false);
+export default function MyListingsScreen({navigation}) {
 
-    //     if (!response.ok) return setError(true);
-    //     // console.log(response)
-    //     setError(false);
-    //     setListings(response.data)
-    // }
+
+    const [listings, setListings] = useState([]);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [messageToDisplay, setMessageToDisplay] = useState(false);
+
+    const { user } = useAuth()
+
+
+    const getMyListingsFromDb = async () => {   // ,{resetForm}
+        const result = await myListingsApi.getListings(user)
+        if (!result.ok) {
+            console.log("Error", result)
+            setMessageToDisplay("Couldn't reterive Your Listings, Please Check connection!")
+            setLoading(false)
+            setError(true)
+            return Alert.alert("Error", "Could not get your Listings from Server.")
+        } else {
+            // console.log(result.data)
+            if(!result.data.length) {
+                setMessageToDisplay("You have no Listings to show. Please add your listings.")
+                setLoading(false)
+                return setListings([]) 
+            }
+            setLoading(false)
+            setListings(result.data)
+        }
+    }
 
     useEffect(()=>{
-        loadListings()
+        setLoading(true)
+        getMyListingsFromDb()
     },[])
 
-    
     return (
         <Screen style={styles.screen}>
             {error && 
             <>
-                <AppText>Couldn't reterive Listings, Please Check connection!</AppText>
-                <AppButton title="Retry" onPress={loadListings} color="primary" />
+                <AppText> {messageToDisplay} </AppText>
+                <AppButton title="Retry" onPress={getMyListingsFromDb} color="primary" />
             </>}
+            {listings.length===0?<AppText> {messageToDisplay} </AppText>:null}
             <ActivityIndicator visible={loading} />
             <FlatList
                 data={listings}

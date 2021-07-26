@@ -19,6 +19,7 @@ const menuItems = [
         name: "format-list-bulleted",
         backgroundColor: colors.primary,
       },
+      screen:routes.MY_LISTINGS
     },
     {
       title: "My Messages",

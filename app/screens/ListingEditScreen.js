@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import * as Yup from "yup"
 // import * as Location from "expo-location"
@@ -10,8 +10,11 @@ import CategoryPickerItem from "../components/CategoryPickerItem";
 import useLocation from '../hooks/useLocation';
 import listingsApi from "../api/listings";
 import UploadScreen from './UploadScreen';
+import categoriesApi from "../api/categories";
+// import useApi from "../hooks/useApi"
 
-const categories = [
+
+const defaultCategories = [
     {
       backgroundColor: "#fc5c65",
       icon: "floor-lamp",
@@ -80,6 +83,29 @@ const categories = [
 
 export default function ListingEditScreen() {
 
+
+  // const { data:categories, loading, error, request:loadCategories } = useApi(categoriesApi.getCategories)
+  const [categories, setCategories] = useState([])
+
+    const getCategories = async () => {   // ,{resetForm}
+        const result = await categoriesApi.getCategories()
+        if (!result.ok) {
+            console.log("Error", result)
+            setCategories(defaultCategories)
+            // return Alert.alert("Error", "Could not get message from Server.")
+        } else {
+            // console.log(result.data)
+            setCategories(result.data)
+        }
+    }
+
+    useEffect(()=>{
+      // getCategories()
+      setCategories(defaultCategories)
+    },[])
+
+// console.log(categories)
+
   const [uploadScreenVisible, setUploadScreenVisible] = useState(false);
   const [progress, setProgress] = useState(0);
 
@@ -97,7 +123,7 @@ export default function ListingEditScreen() {
       return alert("Could not save the listing.")
     }
     // alert("Success")
-    formikBag.resetForm();
+    // formikBag.resetForm();
   }
 
     return (

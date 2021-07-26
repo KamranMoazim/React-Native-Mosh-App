@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Image, StyleSheet } from 'react-native'
 import * as Yup from "yup"
-import jwtDecode from "jwt-decode"
+// import jwtDecode from "jwt-decode"
 
 
 import Screen from '../components/Screen'

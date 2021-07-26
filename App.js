@@ -45,6 +45,7 @@ import OfflineNotice from './app/components/OfflineNotice';
 import AuthContext from "./app/auth/AuthContext";
 import authStorage from "./app/auth/storage"
 // import jwtDecode from "jwt-decode"
+import { navigationRef } from "./app/Navigation/rootNavigation"
 
 export default function App() {
 
@@ -66,8 +67,8 @@ export default function App() {
 
   return (
       <AuthContext.Provider value={{user, setUser}}>
-        <OfflineNotice />
-        <NavigationContainer theme={navigationTheme}>
+        <OfflineNotice /> 
+        <NavigationContainer ref={navigationRef} theme={navigationTheme}>
           { user ? <AppTabNavigator /> : <AuthStackNavigator /> }
         </NavigationContainer>
       </AuthContext.Provider>

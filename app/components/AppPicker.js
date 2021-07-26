@@ -31,6 +31,7 @@ const AppPicker = ({icon, items, selectedItem, setSelectedItem, placeholder, Pic
                 <Button title="Close" onPress={()=>setModalVisible(false)} />
                 <FlatList 
                     data={items}
+                    // keyExtractor={(item)=>item.value}
                     keyExtractor={(item)=>item.value.toString()}
                     renderItem={({item})=> <PickerItemComponent 
                                                 item={item} 

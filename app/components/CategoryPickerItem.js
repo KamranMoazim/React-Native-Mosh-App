@@ -10,6 +10,7 @@ export default function CategoryPickerItem({ item, onPress }) {
         <TouchableOpacity onPress={onPress}>
             <View style={styles.container}>
                 <Icon name={item.icon} size={50} backgroundColor={item.backgroundColor} />
+                {/* <AppText style={styles.text}>{item.name}</AppText> */}
                 <AppText style={styles.text}>{item.label}</AppText>
             </View>
         </TouchableOpacity>

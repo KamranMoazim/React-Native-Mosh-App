@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
@@ -8,10 +8,12 @@ import ListingEditScreen from '../screens/ListingEditScreen'
 // import ListingsScreen from '../screens/ListingsScreen'
 import FeedStackNavigator from './FeedNavigation';
 import AccountStackNavigator from './AccountNavigator';
-import * as Notifications from 'expo-notifications';
+// import * as Notifications from 'expo-notifications';
 import NewListingButton from './NewListingButton'
 import routes from "./routes";
-import expoPushTokensApi from "../api/expoPushTokens"
+// import expoPushTokensApi from "../api/expoPushTokens"
+import navigation from "./rootNavigation"
+import { useNotifications } from '../hooks/useNotifications';
 
 
 const Tab = createBottomTabNavigator()
@@ -29,8 +31,16 @@ const AppTabNavigator = () => {
     // }
     // useEffect(()=>{
     //     registerForPushNotifications();
-    //     Notifications.addPushTokenListener((notification)=>console.log(notification))
+    //     Notifications.addPushTokenListener((notification)=>{
+    //         // console.log(notification)
+    //         navigation.navigate(routes.ACCOUNT)
+    //     })
     // },[])
+
+    useNotifications((notification)=>{
+        // console.log(notification)
+        navigation.navigate(routes.ACCOUNT)
+    })
 
     return <Tab.Navigator>
         {/* <Tab.Screen name="Listings" component={ListingsScreen} /> */}
@@ -48,7 +58,7 @@ const AppTabNavigator = () => {
             name={routes.LISTING_EDIT}
             component={ListingEditScreen} 
             options={ ({navigation}) => ({
-                tabBarButton:()=>(<NewListingButton onPress={()=>navigation.navigate("ListingEdit")} />),
+                tabBarButton:()=>(<NewListingButton onPress={()=>navigation.navigate(routes.LISTING_EDIT)} />),
             })} 
         />
         <Tab.Screen 
